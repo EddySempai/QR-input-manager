@@ -14,7 +14,7 @@ function App() {
 
     // Evitar escaneos múltiples mientras procesa uno
     if (!textoEscaneado || !escaneando) return;
-    
+
     setEscaneando(false);
     setEstado('idle');
     setMensaje('Validando entrada...');
@@ -31,7 +31,7 @@ function App() {
       if (error || !data) {
         console.error('Error de Supabase o no hay datos:', error);
         setEstado('error');
-        setMensaje(`❌ QR Inválido. Leído: "${textoEscaneado}"`);
+        setMensaje(`❌ QR Inválido.`);
       } else if (data.validada) {
         setEstado('warning');
         setMensaje(`⚠️ ¡CUIDADO! Esta entrada ya fue utilizada por: ${data.nombre}`);
@@ -71,10 +71,10 @@ function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', backgroundColor: '#1f2937', padding: '20px', fontFamily: 'sans-serif' }}>
-      
+
       <h1 style={{ color: 'white', textAlign: 'center' }}>Control de Acceso</h1>
       <h2 style={{ color: '#9ca3af', textAlign: 'center', fontSize: '16px' }}>I Seminario UNESR</h2>
-      
+
       <div style={{ width: '100%', maxWidth: '400px', margin: '20px 0', borderRadius: '15px', overflow: 'hidden', border: '4px solid #374151' }}>
         {/* El componente del escáner */}
         {escaneando ? (
